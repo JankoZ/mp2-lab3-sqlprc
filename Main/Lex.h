@@ -6,7 +6,7 @@
 #include "Queue.h"
 #include "Stack.h"
 
-#pragma warning( disable : 4018 )
+#pragma warning( disable : 4018; disable : 4081; disable : 4267)
 
 using namespace std;
 
