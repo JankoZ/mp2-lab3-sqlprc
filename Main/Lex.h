@@ -110,7 +110,6 @@ vector <Lexema> ReversePolska(Queue<Lexema>& q)
 				c = q.GetElement(i).getStr()[0];
 				switch (c) {
 					case '(':
-						//res.push_back(q.GetElement(i));
 						bkt++;
 
 						break;
@@ -132,8 +131,6 @@ vector <Lexema> ReversePolska(Queue<Lexema>& q)
 
 					break;
 				case ')':
-					//if (stack.IsEmpty() == false) for (int g = 0; g <= stack.Size(); g++) res.push_back(stack.Pop());
-					//res.push_back(q.GetElement(i));
 					bkt--;
 
 					break;
