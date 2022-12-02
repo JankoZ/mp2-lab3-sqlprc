@@ -158,8 +158,7 @@ double Calculate(vector<Lexema>& vc) {
 	int i = 0;
 	double o1;
 	double o2;
-	while (i < vc.size())
-	{
+	while (i < vc.size()) {
 		string str = vc[i].getStr();
 		if (vc[i].getType() == Value) { stack.Push(stod(str)); }
 		else {
