@@ -153,17 +153,6 @@ vector <Lexema> ReversePolska(Queue<Lexema>& q)
 	return res;
 }
 
-double StrToDouble(string& st) {
-	double num = 0;
-	int x = 1;
-	for (int i = st.size() - 1; i >= 0; i--) {
-		num += (st[i] - 48) * x;
-		x *= 10;
-	}
-
-	return num;
-}
-
 double Calculate(vector<Lexema>& vc) {
 	Stack<double> stack;
 	int i = 0;
@@ -172,7 +161,7 @@ double Calculate(vector<Lexema>& vc) {
 	while (i < vc.size())
 	{
 		string str = vc[i].getStr();
-		if (vc[i].getType() == Value) { stack.Push(StrToDouble(str)); }
+		if (vc[i].getType() == Value) { stack.Push(stod(str)); }
 		else {
 			if (stack.Size() >= 2) {
 				o2 = stack.Pop();
