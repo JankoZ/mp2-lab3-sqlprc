@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    string str = "(53 + 32 * 2) - 40 / 20\n\n";
+    string str = "(53 + 32 *- 2) - 40 / 20\n\n";
     cout << "Answer = " << (53 + 32 * 2) - 40 / 20 << "\n" << str;
 
     Queue <Lexema> lex_res;

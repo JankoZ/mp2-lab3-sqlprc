@@ -202,8 +202,7 @@ void BracketsCheck(Queue<Lexema>& q) {
 			break;
 	}
 
-	if (lBkt == rBkt) cout << "Brackets are OK\n";
-	else {
+	if (lBkt != rBkt) {
 		if (lBkt > rBkt) {
 			lBkt = 0;
 			for (pos = 1; pos != q.GetSize() + 1; pos++) if (q.GetElement(pos).getStr()[0] == '(') {
