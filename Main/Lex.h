@@ -225,6 +225,6 @@ void OperationsCheck(Queue<Lexema>& q) {
 	string op = "+-/*";
 
 	for (int i = 1; i < q.GetSize() + 1; i++) 
-		if ((i > 1) && (op.find(q.GetElement(i).getStr()[0]) != string::npos) &&(op.find(q.GetElement(i - 1).getStr()[0]) != string::npos)) 
+		if ((i > 1) && (op.find(q.GetElement(i).getStr()[0]) != string::npos) && (op.find(q.GetElement(i - 1).getStr()[0]) != string::npos)) 
 			cout <<	"Excess operation (" << q.GetElement(i).getStr()[0] << ") on position : " << i << '\n';
 }
