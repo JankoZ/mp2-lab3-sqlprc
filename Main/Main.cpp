@@ -21,7 +21,7 @@ int main() {
     }
     catch (exception exc) {
         cout << exc.what();
-        BrañketsCheck(lex_res);
+        BracketsCheck(lex_res);
         OperationsCheck(lex_res);
     }
 

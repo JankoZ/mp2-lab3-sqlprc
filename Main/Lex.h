@@ -190,7 +190,7 @@ double Calculate(vector<Lexema>& vc) {
 	return stack.Pop();
 }
 
-void BraсketsCheck(Queue<Lexema>& q) {
+void BracketsCheck(Queue<Lexema>& q) {
 	int lBkt = 0, rBkt = 0, pos = 1, tBkt = 0;
 
 	for (pos; pos != q.GetSize() + 1; pos++) switch (q.GetElement(pos).getStr()[0]) {
