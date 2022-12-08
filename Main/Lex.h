@@ -45,8 +45,7 @@ Queue<Lexema> lex(string input) {
 	for (i = 0; i < input.size(); i++) {
 		char c = input[i];
 		int fres;
-		switch (state)
-		{
+		switch (state) {
 		case 0: // операция
 			if (c >= '0' && c <= '9') {
 				tmp = c;
@@ -109,7 +108,7 @@ vector <Lexema> ReversePolska(Queue<Lexema>& q)
 			case Operation:
 				c = q.GetElement(i).getStr()[0];
 				switch (c) {
-					case '(':
+				case '(':
 						bkt++;
 
 						break;
@@ -141,10 +140,12 @@ vector <Lexema> ReversePolska(Queue<Lexema>& q)
 
 				break;
 		}
+		if ((i > 1) && (op.find(q.GetElement(i).getStr()[0]) != string::npos) && 
+			(op.find(q.GetElement(i - 1).getStr()[0]) != string::npos)) throw exception("Error: Excess operation\n");
 	}
 
 	while (stack.IsEmpty() == false) res.push_back(stack.Pop());
-	if (bkt != 0) throw exception("Error");
+	if (bkt != 0) throw exception("Error: Bracket problem\n");
 
 	return res;
 }
@@ -187,4 +188,43 @@ double Calculate(vector<Lexema>& vc) {
 	}
 
 	return stack.Pop();
+}
+
+void BraсketsCheck(Queue<Lexema>& q) {
+	int lBkt = 0, rBkt = 0, pos = 1, tBkt = 0;
+
+	for (pos; pos != q.GetSize() + 1; pos++) switch (q.GetElement(pos).getStr()[0]) {
+		case '(':
+			lBkt++;
+			break;
+		case ')':
+			rBkt++;
+			break;
+	}
+
+	if (lBkt == rBkt) cout << "Brackets are OK\n";
+	else {
+		if (lBkt > rBkt) {
+			lBkt = 0;
+			for (pos = 1; pos != q.GetSize() + 1; pos++) if (q.GetElement(pos).getStr()[0] == '(') {
+					if (lBkt == rBkt) cout << "Excess ( - opening bracket - on position: " << pos << '\n';
+					else lBkt++;
+			}
+		}
+		if (lBkt < rBkt) {
+			rBkt = 0;
+			for (pos = 1; pos != q.GetSize() + 1; pos++) if (q.GetElement(pos).getStr()[0] == ')') {
+				if (lBkt == rBkt) cout << "Excess ) - closing bracket - on position: " << pos << '\n';
+				else rBkt++;
+			}
+		}
+	}
+}
+
+void OperationsCheck(Queue<Lexema>& q) {
+	string op = "+-/*";
+
+	for (int i = 1; i < q.GetSize() + 1; i++) 
+		if ((i > 1) && (op.find(q.GetElement(i).getStr()[0]) != string::npos) &&(op.find(q.GetElement(i - 1).getStr()[0]) != string::npos)) 
+			cout <<	"Excess operation (" << q.GetElement(i).getStr()[0] << ") on position : " << i << '\n';
 }

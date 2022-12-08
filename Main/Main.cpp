@@ -14,11 +14,16 @@ int main() {
     lex_res = lex(str);
     cout << lex_res << '\n';
 
-    vector <Lexema> polska;
-    polska = ReversePolska(lex_res);
-    for (int i = 0; i < polska.size(); i++) cout << polska[i] << " ";
-
-    cout << "\n\nCalculate answer = " << Calculate(polska);
+    try {
+        vector <Lexema> polska = ReversePolska(lex_res);
+        for (int i = 0; i < polska.size(); i++) cout << polska[i] << " ";
+        cout << "\n\nCalculate answer = " << Calculate(polska);
+    }
+    catch (exception exc) {
+        cout << exc.what();
+        BrañketsCheck(lex_res);
+        OperationsCheck(lex_res);
+    }
 
     return 0;
 }
