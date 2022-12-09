@@ -20,7 +20,7 @@ public:
 	string getStr() { return str; }
 	TypeElement getType() { return type; }
 	friend ostream& operator << (ostream& out, Lexema& p) {
-		out << "{" << p.str << ", ";
+		out << '{' << p.str << ", ";
 
 		if (p.type == Operation) {
 			out << "operation";
@@ -28,14 +28,14 @@ public:
 		else if (p.type == Value) {
 			out << "value";
 		};
-		out << "}";
+		out << '}';
 
 		return out;
 	}
 };
 
 Queue<Lexema> lex(string input) {
-	Queue<Lexema>res;
+	Queue<Lexema> res;
 	input += ' ';
 	int i = 0;
 	string tmp = "";

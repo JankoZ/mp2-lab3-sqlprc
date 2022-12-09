@@ -12,7 +12,7 @@ private:
     T* arr;
 public:
     Stack(size_t nsize = 1) {
-        if (nsize < 0) throw out_of_range("Error");
+        if (nsize < 0) throw exception("Error: Invalid size\n");
 
         top = -1;
         size = nsize;
@@ -45,7 +45,7 @@ public:
     }
 
     T Pop() {
-        if (IsEmpty() == true) throw out_of_range("Error");
+        if (IsEmpty()) throw exception("Error: Stack is empty\n");
 
         T v = arr[top];
         top--;
@@ -54,7 +54,7 @@ public:
     }
 
     T Top() {
-        if (IsEmpty() == true) throw out_of_range("Error");
+        if (IsEmpty()) throw exception("Error: Stack is empty\n");
 
         return arr[top];
     }
@@ -63,8 +63,8 @@ public:
     bool IsFull() { return top == size - 1; }
 
     friend ostream& operator <<(ostream& out, Stack<T>& st) {
-        if (st.IsEmpty() == true) {
-            out << "Error\n";
+        if (st.IsEmpty()) {
+            out << "Error: Stack is empty\n";
             return out;
         }
 

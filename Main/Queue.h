@@ -67,7 +67,7 @@ public:
     T GetElement(int i) { return arr[i]; }
 
     void Push(T x) {
-        if (IsFull() == true) {
+        if (IsFull()) {
             T* temp = new T[size * 2];
             size_t index = 1;
             for (size_t i = start; i != next(end); i = next(i)) {
@@ -86,7 +86,7 @@ public:
     }
 
     T Pop() {
-        if (IsEmpty() == true) throw out_of_range("Error");
+        if (IsEmpty()) throw exception("Error: Queue is empty\n");
 
         T v = arr[start];
         start = next(start);
@@ -96,11 +96,11 @@ public:
 
     friend ostream& operator <<(ostream& out, Queue<T>& q) {
         if (q.IsEmpty()) {
-            out << "Error\n";
+            out << "Error: Queue is empty\n";
             return out;
         }
 
-        for (int i = q.start; i != q.next(q.end); i = q.next(i)) out << q.arr[i] << '\n';
+        for (int i = q.start; i != q.next(q.end); i = q.next(i)) out << i << ": " << q.arr[i] << '\n';
 
         return out;
     }
