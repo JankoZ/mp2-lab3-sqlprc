@@ -46,7 +46,7 @@ Queue<Lexema> lex(string input) {
 		char c = input[i];
 		int fres;
 		switch (state) {
-		case 0: // операция
+		case 0:
 			if (c >= '0' && c <= '9') {
 				tmp = c;
 				state = 1;
@@ -63,7 +63,7 @@ Queue<Lexema> lex(string input) {
 				break;
 			}
 			break;
-		case 1: // число
+		case 1:
 			if (c >= '0' && c <= '9') {
 				tmp += c;
 				state = 1;
