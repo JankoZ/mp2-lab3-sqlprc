@@ -17,7 +17,9 @@ int main() {
     try {
         vector <Lexema> polska = ReversePolska(lex_res);
         for (int i = 0; i < polska.size(); i++) cout << polska[i] << ' ';
-        cout << "\n\nCalculate answer = " << Calculate(polska);
+        cout << '\n';
+        //BracketsPosition(lex_res);
+        cout << "\n\nCalculate answer = " << Calculate(polska) << '\n';
     }
     catch (exception exc) {
         cout << exc.what();

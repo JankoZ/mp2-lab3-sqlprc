@@ -191,7 +191,7 @@ double Calculate(vector<Lexema>& vc) {
 }
 
 void BracketsCheck(Queue<Lexema>& q) {
-	int lBkt = 0, rBkt = 0, pos = 1, tBkt = 0;
+	int lBkt = 0, rBkt = 0, pos = 1;
 
 	for (pos; pos != q.GetSize() + 1; pos++) switch (q.GetElement(pos).getStr()[0]) {
 		case '(':
@@ -226,4 +226,55 @@ void OperationsCheck(Queue<Lexema>& q) {
 	for (int i = 1; i < q.GetSize() + 1; i++) 
 		if ((i > 1) && (op.find(q.GetElement(i).getStr()[0]) != string::npos) && (op.find(q.GetElement(i - 1).getStr()[0]) != string::npos)) 
 			cout <<	"Excess operation (" << q.GetElement(i).getStr()[0] << ") on position : " << i << '\n';
+}
+
+void BracketsPosition(Queue<Lexema>& q) {
+	int lBkt = 0, rBkt = 0, pos = 1;
+
+	for (pos; pos != q.GetSize() + 1; pos++) switch (q.GetElement(pos).getStr()[0]) {
+	case '(':
+		lBkt++;
+		break;
+	case ')':
+		rBkt++;
+		break;
+	}
+
+	int lPos = 0, rPos = q.GetSize() + 1, lCounter = 0, rCounter = 0;
+	bool lFind = false, rFind = false;
+
+	for (int i = 0; i < lBkt; i++) {
+		for (pos = 1; pos != q.GetSize() + 1; pos++) {
+			char item = q.GetElement(pos).getStr()[0];
+			if ((item == '(') && (!lFind) && (rCounter != 0)) {
+				rCounter--;
+				continue;
+			}
+			if ((item == '(') && (!lFind) && (rCounter == 0)) {
+				lPos = pos;
+				lFind = true;
+				continue;
+			}
+			if ((item == '(') && (lFind) && (rCounter == 0)) {
+				lCounter++;
+				continue;
+			}
+			if ((item == ')') && (lFind) && (lCounter != 0)) {
+				lCounter--;
+				continue;
+			}
+			if ((item == ')') && (lFind) && (!rFind) && (lCounter == 0)) {
+				rPos = pos;
+				rFind = true;
+				continue;
+			}
+		}
+		lFind = false;
+		rFind = false;
+		lCounter = 0;
+		rCounter = i;
+		rCounter++;
+		cout << "Position of opening bracket ( - " << lPos << "; position of closing bracket ) - " << rPos << '\n';
+	}
+
 }
