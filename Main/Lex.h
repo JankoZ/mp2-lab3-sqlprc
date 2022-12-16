@@ -276,5 +276,4 @@ void BracketsPosition(Queue<Lexema>& q) {
 		rCounter++;
 		cout << "Position of opening bracket ( - " << lPos << "; position of closing bracket ) - " << rPos << '\n';
 	}
-
 }
